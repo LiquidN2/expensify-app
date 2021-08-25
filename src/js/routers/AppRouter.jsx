@@ -1,4 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 import Header from '../components/Header';
 import Dashboard from '../components/Dashboard';
 import AddExpense from '../components/AddExpense';
@@ -10,25 +11,11 @@ const AppRouter = () => (
   <BrowserRouter>
     <Header />
     <Switch>
-      <Route path="/" exact>
-        <Dashboard />
-      </Route>
-
-      <Route path="/add">
-        <AddExpense />
-      </Route>
-
-      <Route path="/edit">
-        <EditExpense />
-      </Route>
-
-      <Route path="/help">
-        <Help />
-      </Route>
-
-      <Route>
-        <NotFound />
-      </Route>
+      <Route exact path="/" component={Dashboard} />
+      <Route path="/add" component={AddExpense} />
+      <Route path="/edit/:id" component={EditExpense} />
+      <Route path="/help" component={Help} />
+      <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
 );

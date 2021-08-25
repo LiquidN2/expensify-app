@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 const navLinks = [
   { url: '/', name: 'Dashboard', exact: true },
   { url: '/add', name: 'Add Expense', exact: false },
-  { url: '/edit', name: 'Edit Expense', exact: false },
   { url: '/help', name: 'Help', exact: false },
 ];
 
