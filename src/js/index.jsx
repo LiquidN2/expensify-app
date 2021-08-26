@@ -11,15 +11,8 @@ import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 
 import { addExpense } from './actions/expenses';
-import { setTextFilter, sortByAmount } from './actions/filters';
-import getVisibleExpenses from './selectors/expenses';
 
 const store = configureStore();
-
-const unsubscribe = store.subscribe(() => {
-  const { expenses, filters } = store.getState();
-  console.log(getVisibleExpenses(expenses, filters));
-});
 
 store.dispatch(
   addExpense({
@@ -31,17 +24,19 @@ store.dispatch(
 
 store.dispatch(
   addExpense({
-    description: 'Water bill',
-    amount: 11000,
-    createdAt: 1000,
+    description: 'Rent',
+    amount: 40000,
+    createdAt: 2500,
   })
 );
 
-store.dispatch(sortByAmount());
-
-store.dispatch(setTextFilter('bill'));
-
-unsubscribe();
+store.dispatch(
+  addExpense({
+    description: 'Water bill',
+    amount: 26000,
+    createdAt: 1000,
+  })
+);
 
 const JSX = (
   <React.StrictMode>
