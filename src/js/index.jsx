@@ -5,6 +5,7 @@ import 'regenerator-runtime/runtime';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
@@ -23,7 +24,7 @@ const unsubscribe = store.subscribe(() => {
 store.dispatch(
   addExpense({
     description: 'Gas bill',
-    amount: 180,
+    amount: 19000,
     createdAt: 4000,
   })
 );
@@ -31,20 +32,22 @@ store.dispatch(
 store.dispatch(
   addExpense({
     description: 'Water bill',
-    amount: 110,
+    amount: 11000,
     createdAt: 1000,
   })
 );
 
 store.dispatch(sortByAmount());
 
-store.dispatch(setTextFilter('water'));
+store.dispatch(setTextFilter('bill'));
 
 unsubscribe();
 
 const JSX = (
   <React.StrictMode>
-    <AppRouter />
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
   </React.StrictMode>
 );
 

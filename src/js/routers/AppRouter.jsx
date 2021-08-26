@@ -1,11 +1,11 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from '../components/Header';
-import Dashboard from '../components/Dashboard';
-import AddExpense from '../components/AddExpense';
-import EditExpense from '../components/EditExpense';
-import Help from '../components/Help';
-import NotFound from '../components/NotFound';
+import Dashboard from '../pages/Dashboard';
+import AddExpense from '../pages/AddExpense';
+import EditExpense from '../pages/EditExpense';
+import Help from '../pages/Help';
+import NotFound from '../pages/NotFound';
 
 const AppRouter = () => (
   <BrowserRouter>
