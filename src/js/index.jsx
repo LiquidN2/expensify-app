@@ -14,6 +14,8 @@ import { addExpense } from './actions/expenses';
 
 const store = configureStore();
 
+console.log(process.env.LOCALE);
+
 store.dispatch(
   addExpense({
     description: 'Gas bill',
