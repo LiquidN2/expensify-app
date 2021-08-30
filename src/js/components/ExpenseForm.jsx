@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 // import DayPicker from 'react-day-picker';
+import moment from 'moment';
+import 'moment/locale/en-au';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import { formatDate, parseDate } from 'react-day-picker/moment';
-import 'moment/locale/en-au';
+import MomentLocaleUtils, {
+  formatDate,
+  parseDate,
+} from 'react-day-picker/moment';
+import LocaleUtils from 'react-day-picker/moment';
 
 const ExpenseForm = props => {
   const [description, setDescription] = useState(props.description);
   const [amount, setAmount] = useState(props.amount / 100 || '');
   const [note, setNote] = useState(props.note);
-  const [createdAt, setCreatedAt] = useState(
-    formatDate(props.createdAt) || formatDate()
-  );
+  const [createdAt, setCreatedAt] = useState(moment(props.createdAt).toDate());
   const [error, setError] = useState(null);
 
   const handleInputChange = e => {
@@ -25,7 +28,7 @@ const ExpenseForm = props => {
 
   const handleDateChange = selectedDate => {
     if (!selectedDate) return;
-    setCreatedAt(selectedDate.valueOf());
+    setCreatedAt(selectedDate);
   };
 
   const handleSubmit = e => {
@@ -39,10 +42,7 @@ const ExpenseForm = props => {
       description,
       amount: parseFloat(amount, 10) * 100,
       note,
-      createdAt:
-        typeof createdAt === 'string'
-          ? parseDate(createdAt).valueOf()
-          : createdAt.valueOf(),
+      createdAt: createdAt.valueOf(),
     });
     setError(null);
   };
@@ -69,15 +69,14 @@ const ExpenseForm = props => {
         <DayPickerInput
           formatDate={formatDate}
           parseDate={parseDate}
-          locale={process.env.LOCALE}
           format={process.env.DATE_FORMAT}
           value={createdAt}
           onDayChange={handleDateChange}
-          placeholder={`${formatDate(
-            new Date(),
-            process.env.DATE_FORMAT,
-            process.env.LOCALE
-          )}`}
+          placeholder="select date"
+          dayPickerProps={{
+            locale: process.env.DATE_FORMAT,
+            LocaleUtils: MomentLocaleUtils,
+          }}
         />
         <textarea
           name="note"

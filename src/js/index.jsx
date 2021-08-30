@@ -6,11 +6,14 @@ import 'regenerator-runtime/runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import moment from 'moment';
+import 'moment/locale/en-au';
 
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 
 import { addExpense } from './actions/expenses';
+import { setStartDate } from './actions/filters';
 
 const store = configureStore();
 
@@ -20,7 +23,7 @@ store.dispatch(
   addExpense({
     description: 'Gas bill',
     amount: 19050,
-    createdAt: 1630147830000,
+    createdAt: moment('27/08/2021', 'L').valueOf(),
   })
 );
 
@@ -28,7 +31,7 @@ store.dispatch(
   addExpense({
     description: 'Rent',
     amount: 40000,
-    createdAt: 1628196630000,
+    createdAt: moment('11/08/2021', 'L').valueOf(),
   })
 );
 
@@ -36,9 +39,11 @@ store.dispatch(
   addExpense({
     description: 'Water bill',
     amount: 26000,
-    createdAt: 1626555030000,
+    createdAt: moment('02/07/2021', 'L').valueOf(),
   })
 );
+
+// store.dispatch(setStartDate(moment('01/08/2021', 'L').valueOf()));
 
 const JSX = (
   <React.StrictMode>

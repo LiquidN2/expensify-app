@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import {
   SET_TEXT_FILTER,
   SET_START_DATE,
@@ -9,8 +11,8 @@ import {
 const DEFAULT_STATE = {
   text: '',
   sortBy: 'date',
-  startDate: null,
-  endDate: null,
+  startDate: moment().subtract(1, 'months').startOf('month').valueOf(),
+  endDate: moment().endOf('month').valueOf(),
 };
 
 const filtersReducer = (state = DEFAULT_STATE, action) => {
