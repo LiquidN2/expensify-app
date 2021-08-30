@@ -6,10 +6,12 @@ import { formatDate, parseDate } from 'react-day-picker/moment';
 import 'moment/locale/en-au';
 
 const ExpenseForm = props => {
-  const [description, setDescription] = useState('');
-  const [amount, setAmount] = useState('');
-  const [note, setNote] = useState('');
-  const [createdAt, setCreatedAt] = useState(formatDate());
+  const [description, setDescription] = useState(props.description);
+  const [amount, setAmount] = useState(props.amount / 100 || '');
+  const [note, setNote] = useState(props.note);
+  const [createdAt, setCreatedAt] = useState(
+    formatDate(props.createdAt) || formatDate()
+  );
   const [error, setError] = useState(null);
 
   const handleInputChange = e => {
@@ -23,8 +25,7 @@ const ExpenseForm = props => {
 
   const handleDateChange = selectedDate => {
     if (!selectedDate) return;
-    setCreatedAt(selectedDate);
-    console.log(selectedDate.valueOf());
+    setCreatedAt(selectedDate.valueOf());
   };
 
   const handleSubmit = e => {
@@ -38,7 +39,10 @@ const ExpenseForm = props => {
       description,
       amount: parseFloat(amount, 10) * 100,
       note,
-      createdAt: createdAt.valueOf(),
+      createdAt:
+        typeof createdAt === 'string'
+          ? parseDate(createdAt).valueOf()
+          : createdAt.valueOf(),
     });
     setError(null);
   };
@@ -81,7 +85,7 @@ const ExpenseForm = props => {
           value={note}
           onChange={handleInputChange}
         />
-        <button type="submit">Add Expense</button>
+        <button type="submit">Submit</button>
       </form>
       {/* <DayPicker /> */}
     </div>

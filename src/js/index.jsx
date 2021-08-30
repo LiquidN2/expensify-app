@@ -19,8 +19,8 @@ console.log(process.env.LOCALE);
 store.dispatch(
   addExpense({
     description: 'Gas bill',
-    amount: 19000,
-    createdAt: 4000,
+    amount: 19050,
+    createdAt: 1630147830000,
   })
 );
 
@@ -28,7 +28,7 @@ store.dispatch(
   addExpense({
     description: 'Rent',
     amount: 40000,
-    createdAt: 2500,
+    createdAt: 1628196630000,
   })
 );
 
@@ -36,7 +36,7 @@ store.dispatch(
   addExpense({
     description: 'Water bill',
     amount: 26000,
-    createdAt: 1000,
+    createdAt: 1626555030000,
   })
 );
 
