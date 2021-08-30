@@ -26,6 +26,4 @@ const getVisibleExpenses = (
     });
 };
 
-const mapStateToProps = (state, ownProps) => ({});
-
 export default getVisibleExpenses;

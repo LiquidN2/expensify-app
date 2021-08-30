@@ -13,7 +13,6 @@ import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 
 import { addExpense } from './actions/expenses';
-import { setStartDate } from './actions/filters';
 
 const store = configureStore();
 
@@ -42,8 +41,6 @@ store.dispatch(
     createdAt: moment('02/07/2021', 'L').valueOf(),
   })
 );
-
-// store.dispatch(setStartDate(moment('01/08/2021', 'L').valueOf()));
 
 const JSX = (
   <React.StrictMode>
