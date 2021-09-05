@@ -1,14 +1,6 @@
-import {
-  ADD_EXPENSE,
-  EDIT_EXPENSE,
-  REMOVE_EXPENSE,
-} from '../../js/actions/constants';
+import { ADD_EXPENSE, EDIT_EXPENSE, REMOVE_EXPENSE } from '../constants';
 
-import {
-  addExpense,
-  editExpense,
-  removeExpense,
-} from '../../js/actions/expenses.js';
+import { addExpense, editExpense, removeExpense } from '../expenses';
 
 test('should setup remove expense action obj', () => {
   const id = '12345abcdf';

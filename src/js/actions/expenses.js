@@ -1,4 +1,9 @@
-import { ADD_EXPENSE, REMOVE_EXPENSE, EDIT_EXPENSE } from './constants';
+import {
+  ADD_EXPENSE,
+  REMOVE_EXPENSE,
+  EDIT_EXPENSE,
+  SETUP_MOCK_EXPENSES,
+} from './constants';
 import { v4 as uuidv4 } from 'uuid';
 
 // Action generators
@@ -27,4 +32,9 @@ export const editExpense = (id = '', updates = {}) => ({
   type: EDIT_EXPENSE,
   id,
   updates,
+});
+
+export const setupMockExpenses = expenses => ({
+  type: SETUP_MOCK_EXPENSES,
+  expenses,
 });

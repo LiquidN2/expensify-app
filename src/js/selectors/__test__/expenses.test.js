@@ -1,5 +1,5 @@
 import moment from 'moment';
-import selectExpenses from '../../js/selectors/expenses';
+import selectExpenses from '../expenses';
 
 const expenses = [
   {

@@ -16,6 +16,7 @@ const Header = () => (
               to={link.url}
               exact={link.exact}
               activeClassName="link--active"
+              data-testid={`nav-link--${i}`}
             >
               {link.name}
             </NavLink>

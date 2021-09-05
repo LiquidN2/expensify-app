@@ -5,9 +5,16 @@ import { formatCurrency } from '../utils/helpers';
 
 moment.locale(process.env.LOCALE);
 
-const ExpenseItem = ({ id, description, amount, createdAt, dispatch }) => (
+const ExpenseItem = ({
+  id,
+  description,
+  amount,
+  createdAt,
+  // dispatch,
+  index,
+}) => (
   <li>
-    <Link to={`edit/${id}`}>
+    <Link to={`edit/${id}`} aria-label={`expense-link--${index}`}>
       <h3>{description}</h3>
     </Link>
     <p>

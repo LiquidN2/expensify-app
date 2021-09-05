@@ -2,6 +2,7 @@ import {
   ADD_EXPENSE,
   EDIT_EXPENSE,
   REMOVE_EXPENSE,
+  SETUP_MOCK_EXPENSES,
 } from '../actions/constants';
 
 import { removeElfromArrById, updateElfromArrById } from '../utils/helpers';
@@ -19,6 +20,9 @@ const expensesReducer = (state = DEFAULT_STATE, action) => {
 
     case EDIT_EXPENSE:
       return updateElfromArrById(state, action.id, action.updates);
+
+    case SETUP_MOCK_EXPENSES:
+      return [...action.expenses];
 
     default:
       return state;

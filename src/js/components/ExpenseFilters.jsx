@@ -36,6 +36,8 @@ const ExpenseFilters = props => {
     <div>
       <input
         type="text"
+        placeholder="Expense description filter"
+        aria-label="description-filter"
         value={props.filters.text}
         onChange={e => {
           props.dispatch(setTextFilter(e.target.value));
@@ -44,8 +46,9 @@ const ExpenseFilters = props => {
 
       <select
         value={props.filters.sortBy}
+        aria-label="sortby-filter"
         onChange={e => {
-          console.log(e.target.value);
+          // console.log(e.target.value);
           e.target.value === 'date' && props.dispatch(sortByDate());
           e.target.value === 'amount' && props.dispatch(sortByAmount());
         }}

@@ -8,8 +8,15 @@ const ExpenseList = props => (
     <h1>Expense List</h1>
     {props.expenses.length === 0 ? null : (
       <ul>
-        {props.expenses.map(expense => {
-          return <ExpenseItem key={expense.id} {...expense} />;
+        {props.expenses.map((expense, index) => {
+          return (
+            <ExpenseItem
+              key={expense.id}
+              {...expense}
+              index={index}
+              data-testid="test"
+            />
+          );
         })}
       </ul>
     )}

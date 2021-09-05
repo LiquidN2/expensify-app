@@ -4,9 +4,9 @@ import {
   ADD_EXPENSE,
   EDIT_EXPENSE,
   REMOVE_EXPENSE,
-} from '../../js/actions/constants';
+} from '../../actions/constants';
 
-import expensesReducer from '../../js/reducers/expenses';
+import expensesReducer from '../expenses';
 
 const expenses = [
   {

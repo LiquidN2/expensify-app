@@ -6,9 +6,9 @@ import {
   SORT_BY_AMOUNT,
   SET_START_DATE,
   SET_END_DATE,
-} from '../../js/actions/constants';
+} from '../../actions/constants';
 
-import filtersReducer from '../../js/reducers/filters';
+import filtersReducer from '../filters';
 
 test('should setup default filter values', () => {
   const state = filtersReducer(undefined, { type: '@@INIT' });

@@ -10,7 +10,7 @@ const AddExpense = props => {
   };
 
   return (
-    <div>
+    <div data-testid="add-expense-page">
       <h1>Add Expense</h1>
       <ExpenseForm handleSubmit={handleAddExpense} />
     </div>

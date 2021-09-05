@@ -8,10 +8,10 @@ import MomentLocaleUtils, {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-import LocaleUtils from 'react-day-picker/moment';
+// import LocaleUtils from 'react-day-picker/moment';
 
 const ExpenseForm = props => {
-  const [description, setDescription] = useState(props.description);
+  const [description, setDescription] = useState(props.description || '');
   const [amount, setAmount] = useState(props.amount / 100 || '');
   const [note, setNote] = useState(props.note);
   const [createdAt, setCreatedAt] = useState(moment(props.createdAt).toDate());
@@ -55,6 +55,7 @@ const ExpenseForm = props => {
           type="text"
           name="description"
           placeholder="Description"
+          aria-label="description"
           value={description}
           onChange={handleInputChange}
           autoFocus
@@ -63,6 +64,7 @@ const ExpenseForm = props => {
           type="text"
           name="amount"
           placeholder="Amount"
+          aria-label="amount"
           value={amount}
           onChange={handleInputChange}
         />
@@ -83,6 +85,7 @@ const ExpenseForm = props => {
           placeholder="Add a note for your expense (optional)"
           value={note}
           onChange={handleInputChange}
+          aria-label="note"
         />
         <button type="submit">Submit</button>
       </form>

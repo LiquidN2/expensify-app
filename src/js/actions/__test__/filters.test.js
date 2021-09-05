@@ -4,7 +4,7 @@ import {
   SORT_BY_AMOUNT,
   SET_START_DATE,
   SET_END_DATE,
-} from '../../js/actions/constants';
+} from '../constants';
 
 import {
   setTextFilter,
@@ -12,7 +12,7 @@ import {
   sortByAmount,
   setStartDate,
   setEndDate,
-} from '../../js/actions/filters';
+} from '../filters';
 
 test('should setup text filter action obj', () => {
   const text = 'bill';
