@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ExpenseForm from '../components/ExpenseForm';
 import { editExpense, removeExpense } from '../actions/expenses';
+import React from 'react';
 
 const EditExpense = props => {
   const { id: expenseId } = props.match.params;
@@ -16,10 +17,16 @@ const EditExpense = props => {
   };
 
   return (
-    <div>
-      <p>Editing the expense id {expenseId}</p>
-      <ExpenseForm handleSubmit={handleEditExpense} {...props.expense} />
-      <button onClick={handleRemoveExpense}>Remove</button>
+    <div className="mt-4 mb-4 container max-width-60r">
+      <h1 className="mb-4">Update expense</h1>
+      <ExpenseForm
+        handleSubmit={handleEditExpense}
+        {...props.expense}
+        removeExpense={handleRemoveExpense}
+      />
+      <button className="btn btn-secondary mt-3" onClick={handleRemoveExpense}>
+        Remove
+      </button>
     </div>
   );
 };

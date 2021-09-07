@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const removeElfromArrById = (arr = [], id = '') => {
   if (!id) return arr;
   const updatedArr = Array.from(arr);
@@ -25,4 +27,9 @@ export const formatCurrency = amount => {
     style: 'currency',
     currency: 'AUD',
   }).format(amount / 100);
+};
+
+export const timeFromNow = date => {
+  if (moment().diff(date, 'days') <= 5) return moment(date).fromNow();
+  return moment(date).format(process.env.DATE_FORMAT);
 };

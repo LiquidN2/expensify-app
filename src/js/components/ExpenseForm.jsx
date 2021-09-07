@@ -14,7 +14,9 @@ const ExpenseForm = props => {
   const [description, setDescription] = useState(props.description || '');
   const [amount, setAmount] = useState(props.amount / 100 || '');
   const [note, setNote] = useState(props.note);
-  const [createdAt, setCreatedAt] = useState(moment(props.createdAt).toDate());
+  const [createdAt, setCreatedAt] = useState(
+    moment(props.createdAt).format('YYYY-MM-DD')
+  );
   const [error, setError] = useState(null);
 
   const handleInputChange = e => {
@@ -24,11 +26,7 @@ const ExpenseForm = props => {
     if (fieldName === 'note') return setNote(fieldValue);
     if (fieldName === 'amount' && fieldValue.match(/^\d{1,}(\.\d{0,2})?$/))
       return setAmount(fieldValue);
-  };
-
-  const handleDateChange = selectedDate => {
-    if (!selectedDate) return;
-    setCreatedAt(selectedDate);
+    if (fieldName === 'createdAt') return setCreatedAt(fieldValue);
   };
 
   const handleSubmit = e => {
@@ -42,57 +40,161 @@ const ExpenseForm = props => {
       description,
       amount: parseFloat(amount, 10) * 100,
       note,
-      createdAt: createdAt.valueOf(),
+      createdAt: moment(createdAt, 'YYYY-MM-DD'),
     });
     setError(null);
   };
 
   return (
-    <div>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
+    <form className="row g-3" onSubmit={handleSubmit}>
+      <div className="col-12">
+        <label htmlFor="description" className="form-label">
+          Description
+        </label>
         <input
           type="text"
+          className="form-control"
+          id="description"
           name="description"
-          placeholder="Description"
-          aria-label="description"
+          placeholder="Enter your expense description"
+          required
           value={description}
           onChange={handleInputChange}
           autoFocus
         />
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="amount" className="form-label">
+          Amount ($ AUD)
+        </label>
         <input
-          type="text"
+          type="number"
+          className="form-control"
+          id="amount"
           name="amount"
-          placeholder="Amount"
-          aria-label="amount"
+          required
           value={amount}
           onChange={handleInputChange}
         />
-        <DayPickerInput
-          formatDate={formatDate}
-          parseDate={parseDate}
-          format={process.env.DATE_FORMAT}
+      </div>
+      <div className="col-md-6">
+        <label htmlFor="createdAt" className="form-label">
+          Date spent
+        </label>
+        <input
+          type="date"
+          id="createdAt"
+          name="createdAt"
+          className="form-control"
           value={createdAt}
-          onDayChange={handleDateChange}
-          placeholder="select date"
-          dayPickerProps={{
-            locale: process.env.DATE_FORMAT,
-            LocaleUtils: MomentLocaleUtils,
-          }}
+          onChange={handleInputChange}
+          required
         />
+      </div>
+      <div className="col-12">
+        <label htmlFor="note" className="form-label">
+          Note
+        </label>
         <textarea
+          className="form-control"
+          id="note"
           name="note"
-          placeholder="Add a note for your expense (optional)"
           value={note}
           onChange={handleInputChange}
-          aria-label="note"
         />
-        <button type="submit">Submit</button>
-      </form>
-      {/* <DayPicker /> */}
-    </div>
+      </div>
+      <div className="col-12">
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </div>
+    </form>
   );
 };
+
+// const ExpenseForm = props => {
+//   const [description, setDescription] = useState(props.description || '');
+//   const [amount, setAmount] = useState(props.amount / 100 || '');
+//   const [note, setNote] = useState(props.note);
+//   const [createdAt, setCreatedAt] = useState(moment(props.createdAt).toDate());
+//   const [error, setError] = useState(null);
+//
+//   const handleInputChange = e => {
+//     const fieldName = e.target.name;
+//     const fieldValue = e.target.value.trim();
+//     if (fieldName === 'description') return setDescription(fieldValue);
+//     if (fieldName === 'note') return setNote(fieldValue);
+//     if (fieldName === 'amount' && fieldValue.match(/^\d{1,}(\.\d{0,2})?$/))
+//       return setAmount(fieldValue);
+//   };
+//
+//   const handleDateChange = selectedDate => {
+//     if (!selectedDate) return;
+//     setCreatedAt(selectedDate);
+//   };
+//
+//   const handleSubmit = e => {
+//     e.preventDefault();
+//
+//     if (!amount || !description) {
+//       return setError('Please provide description and amount.');
+//     }
+//
+//     props.handleSubmit({
+//       description,
+//       amount: parseFloat(amount, 10) * 100,
+//       note,
+//       createdAt: createdAt.valueOf(),
+//     });
+//     setError(null);
+//   };
+//
+//   return (
+//     <div>
+//       {error && <p>{error}</p>}
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type="text"
+//           name="description"
+//           placeholder="Description"
+//           aria-label="description"
+//           value={description}
+//           onChange={handleInputChange}
+//           autoFocus
+//         />
+//         <input
+//           type="text"
+//           name="amount"
+//           placeholder="Amount"
+//           aria-label="amount"
+//           value={amount}
+//           onChange={handleInputChange}
+//         />
+//         <DayPickerInput
+//           formatDate={formatDate}
+//           parseDate={parseDate}
+//           format={process.env.DATE_FORMAT}
+//           value={createdAt}
+//           onDayChange={handleDateChange}
+//           placeholder="select date"
+//           dayPickerProps={{
+//             locale: process.env.DATE_FORMAT,
+//             LocaleUtils: MomentLocaleUtils,
+//           }}
+//         />
+//         <textarea
+//           name="note"
+//           placeholder="Add a note for your expense (optional)"
+//           value={note}
+//           onChange={handleInputChange}
+//           aria-label="note"
+//         />
+//         <button type="submit">Submit</button>
+//       </form>
+//       {/* <DayPicker /> */}
+//     </div>
+//   );
+// };
 
 // class ExpenseForm extends React.Component {
 //   state = {

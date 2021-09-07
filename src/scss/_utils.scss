@@ -1,0 +1,16 @@
+.disable-flex-grow {
+  flex-grow: 0 !important;
+}
+
+.enable-flex-grow {
+  flex-grow: 1 !important;
+}
+
+.max-width-60r {
+  max-width: 600px !important;
+}
+
+.divider {
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}

@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min';
 import '../scss/main.scss';
 
 import 'core-js/stable';
@@ -22,17 +24,20 @@ const expenses = [
   {
     description: 'Gas bill',
     amount: 19050,
-    createdAt: moment().startOf('month').valueOf(),
+    createdAt: moment().subtract(1, 'days').valueOf(),
+    note: 'This is a mocked expense',
   },
   {
     description: 'Rent',
     amount: 40000,
-    createdAt: moment().startOf('month').add(15, 'days').valueOf(),
+    createdAt: moment().subtract(3, 'days').valueOf(),
+    note: 'This is a mocked expense',
   },
   {
     description: 'Water bill',
     amount: 26000,
-    createdAt: moment().endOf('month').valueOf(),
+    createdAt: moment().subtract(20, 'days').valueOf(),
+    note: 'This is a mocked expense',
   },
 ];
 

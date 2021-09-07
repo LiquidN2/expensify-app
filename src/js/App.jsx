@@ -6,17 +6,21 @@ import EditExpense from './pages/EditExpense';
 import Help from './pages/Help';
 import NotFound from './pages/NotFound';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 const App = () => (
   <>
     <Header />
-    <Switch>
-      <Route exact path="/" component={Dashboard} />
-      <Route path="/add" component={AddExpense} />
-      <Route path="/edit/:id" component={EditExpense} />
-      <Route path="/help" component={Help} />
-      <Route component={NotFound} />
-    </Switch>
+    <div>
+      <Switch>
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/add" component={AddExpense} />
+        <Route path="/edit/:id" component={EditExpense} />
+        <Route path="/help" component={Help} />
+        <Route component={NotFound} />
+      </Switch>
+    </div>
+    <Footer />
   </>
 );
 
